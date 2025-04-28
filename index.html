@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moviescritic</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container header-content">
+            <div class="logo">MovieDB</div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#">Movies</a></li>
+                    <li><a href="#">TV Shows</a></li>
+                    <li><a href="#">Top Rated</a></li>
+                    <li><a href="#">New Releases</a></li>
+                </ul>
+            </nav>
+            <div class="user-actions">
+                <button id="login-btn">Login</button>
+                <button id="signup-btn">Sign Up</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Your Ultimate Movie Experience</h1>
+            <p>Discover, explore, and review your favorite movies all in one place. Join our community of movie enthusiasts today!</p>
+            <button class="btn">Explore Now</button>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="container">
+        <!-- Search Bar -->
+        <div class="search-container">
+            <form class="search-form">
+                <input type="text" placeholder="Search for movies, actors, directors...">
+                <button type="submit">Search</button>
+            </form>
+            <button class="toggle-advanced">Advanced Search</button>
+            <div class="advanced-search">
+                <div class="form-group">
+                    <label>Genre</label>
+                    <select>
+                        <option value="">All Genres</option>
+                        <option value="action">Action</option>
+                        <option value="comedy">Comedy</option>
+                        <option value="drama">Drama</option>
+                        <option value="horror">Horror</option>
+                        <option value="scifi">Sci-Fi</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Release Year</label>
+                    <select>
+                        <option value="">All Years</option>
+                        <option value="2023">2023</option>
+                        <option value="2022">2022</option>
+                        <option value="2021">2021</option>
+                        <option value="2020">2020</option>
+                        <option value="older">2019 & Older</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Rating</label>
+                    <select>
+                        <option value="">All Ratings</option>
+                        <option value="9">9+ Stars</option>
+                        <option value="8">8+ Stars</option>
+                        <option value="7">7+ Stars</option>
+                        <option value="6">6+ Stars</option>
+                        <option value="5">5+ Stars</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Actor</label>
+                    <input type="text" placeholder="Actor name">
+                </div>
+            </div>
+        </div>
+
+        <!-- Popular Movies Section -->
+        <h2>Popular Movies</h2>
+        <div class="movies-grid">
+            <!-- Movie Card 1 -->
+            <div class="movie-card" data-id="1">
+                <img src="imgs\inception.jpg" alt="Movie poster" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">Inception</h3>
+                    <div class="movie-meta">
+                        <span>2010</span>
+                        <span class="movie-rating">8.8</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Movie Card 2 -->
+            <div class="movie-card" data-id="2">
+                <img src="imgs\shawshank redemption.webp" alt="Movie poster" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">The Shawshank Redemption</h3>
+                    <div class="movie-meta">
+                        <span>1994</span>
+                        <span class="movie-rating">9.3</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Movie Card 3 -->
+            <div class="movie-card" data-id="3">
+                <img src="imgs\dark knight.jpeg" alt="Movie poster" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">The Dark Knight</h3>
+                    <div class="movie-meta">
+                        <span>2008</span>
+                        <span class="movie-rating">9.0</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Movie Card 4 -->
+            <div class="movie-card" data-id="4">
+                <img src="imgs\paramathma.jpeg" alt="Movie poster" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">paramathma</h3>
+                    <div class="movie-meta">
+                        <span>1994</span>
+                        <span class="movie-rating">8.9</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Movie Card 5 -->
+            <div class="movie-card" data-id="5">
+                <img src="imgs\godfather.jpeg" alt="Movie poster" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">The Godfather</h3>
+                    <div class="movie-meta">
+                        <span>1972</span>
+                        <span class="movie-rating">9.2</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Movie Card 6 -->
+            <div class="movie-card" data-id="6">
+                <img src="imgs\yajamana.webp" alt="Movie poster" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">Yajamana</h3>
+                    <div class="movie-meta">
+                        <span>1999</span>
+                        <span class="movie-rating">8.8</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="auth-form">
+                <h2>Login to Your Account</h2>
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" required>
+                    </div>
+                    <button type="submit">Login</button>
+                </form>
+                <div class="switch-form">
+                    Don't have an account? <a href="#" id="switch-to-signup">Sign up now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Signup Modal -->
+    <div class="modal" id="signup-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="auth-form">
+                <h2>Create a New Account</h2>
+                <form id="signup-form">
+                    <div class="form-group">
+                        <label for="signup-username">Username</label>
+                        <input type="text" id="signup-username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email">Email</label>
+                        <input type="email" id="signup-email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password">Password</label>
+                        <input type="password" id="signup-password" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-confirm">Confirm Password</label>
+                        <input type="password" id="signup-confirm" required>
+                    </div>
+                    <button type="submit">Sign Up</button>
+                </form>
+                <div class="switch-form">
+                    Already have an account? <a href="#" id="switch-to-login">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Movie Details Modal -->
+    <div class="modal" id="movie-details-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="movie-details">
+                <div class="movie-banner">
+                    <div class="movie-banner-overlay">
+                        <h1 class="movie-banner-title">Inception</h1>
+                        <div class="movie-specs">
+                            <span>2010</span>
+                            <span>PG-13</span>
+                            <span>148 min</span>
+                            <span class="movie-rating">8.8</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="movie-content">
+                    <div class="movie-info-grid">
+                        <div>
+                            <img src="placeholder-poster.jpg" alt="Movie poster" class="movie-poster-large">
+                        </div>
+                        <div>
+                            <p class="movie-description">
+                                A thief who steals corporate secrets through the use of dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O., but his tragic past may doom the project and his team to disaster.
+                            </p>
+                            <div class="movie-details-info">
+                                <p><strong>Director:</strong> Christopher Nolan</p>
+                                <p><strong>Writers:</strong> Christopher Nolan</p>
+                                <p><strong>Genres:</strong> Action, Adventure, Sci-Fi, Thriller</p>
+                                <p><strong>Release Date:</strong> July 16, 2010</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Cast Section -->
+                    <div class="cast-section">
+                        <h3>Cast</h3>
+                        <div class="cast-list">
+                            <div class="cast-item">
+                                <img src="placeholder-actor-1.jpg" alt="Actor" class="cast-photo">
+                                <div class="cast-name">Leonardo DiCaprio</div>
+                                <div class="cast-role">Cobb</div>
+                            </div>
+                            <div class="cast-item">
+                                <img src="placeholder-actor-2.jpg" alt="Actor" class="cast-photo">
+                                <div class="cast-name">Joseph Gordon-Levitt</div>
+                                <div class="cast-role">Arthur</div>
+                            </div>
+                            <div class="cast-item">
+                                <img src="placeholder-actor-3.jpg" alt="Actor" class="cast-photo">
+                                <div class="cast-name">Ellen Page</div>
+                                <div class="cast-role">Ariadne</div>
+                            </div>
+                            <div class="cast-item">
+                                <img src="placeholder-actor-4.jpg" alt="Actor" class="cast-photo">
+                                <div class="cast-name">Tom Hardy</div>
+                                <div class="cast-role">Eames</div>
+                            </div>
+                            <div class="cast-item">
+                                <img src="placeholder-actor-5.jpg" alt="Actor" class="cast-photo">
+                                <div class="cast-name">Ken Watanabe</div>
+                                <div class="cast-role">Saito</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reviews Section -->
+                    <div class="reviews-section">
+                        <h3>Reviews</h3>
+                        <div class="review-form">
+                            <h4>Add Your Review</h4>
+                            <div class="rating-stars">
+                                <span class="star" data-value="1">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="5">★</span>
+                            </div>
+                            <div class="form-group">
+                                <textarea placeholder="Write your review here..." rows="4"></textarea>
+                            </div>
+                            <button>Submit Review</button>
+                        </div>
+                        <div class="review-list">
+                            <div class="review">
+                                <div class="review-header">
+                                    <span class="reviewer">MovieFan123</span>
+                                    <span class="review-date">July 12, 2023</span>
+                                </div>
+                                <div class="review-rating">★★★★★</div>
+                                <p>This movie blew my mind! The concept is incredibly original and the execution is flawless. The special effects are amazing even years later, and the acting is top-notch. Highly recommend!</p>
+                            </div>
+                            <div class="review">
+                                <div class="review-header">
+                                    <span class="reviewer">CinemaGuru</span>
+                                    <span class="review-date">June 5, 2023</span>
+                                </div>
+                                <div class="review-rating">★★★★☆</div>
+                                <p>Nolan's storytelling is masterful. The movie requires multiple viewings to fully appreciate all the layers. The only issue is that it can be a bit confusing for casual viewers.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Panel Modal -->
+    <div class="modal" id="admin-panel-modal">
+        <div class="modal-content" style="max-width: 1000px;">
+            <span class="close-modal">&times;</span>
+            <div class="admin-panel">
+                <div class="admin-header">
+                    <h2>Admin Panel</h2>
+                    <button>Add New Movie</button>
+                </div>
+                
+                <div class="admin-tabs">
+                    <div class="admin-tab active">Movies</div>
+                    <div class="admin-tab">Genres</div>
+                    <div class="admin-tab">Actors</div>
+                    <div class="admin-tab">Users</div>
+                </div>
+                
+                <div class="admin-content">
+                    <!-- Movies Tab -->
+                    <div class="admin-tab-content active">
+                        <table class="admin-table">
+                            <thead>
+                                <tr>
+                                    <th>Title</th>
+                                    <th>Release Year</th>
+                                    <th>Rating</th>
+                                    <th>Genre</th>
+                                    <th>Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Inception</td>
+                                    <td>2010</td>
+                                    <td>8.8</td>
+                                    <td>Sci-Fi, Action</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="edit-btn">Edit</button>
+                                            <button class="delete-btn">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>The Shawshank Redemption</td>
+                                    <td>1994</td>
+                                    <td>9.3</td>
+                                    <td>Drama</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="edit-btn">Edit</button>
+                                            <button class="delete-btn">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>The Dark Knight</td>
+                                    <td>2008</td>
+                                    <td>9.0</td>
+                                    <td>Action, Crime, Drama</td>
+                                    <td>
+                                        <div class="action-buttons">
+                                            <button class="edit-btn">Edit</button>
+                                            <button class="delete-btn">Delete</button>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Movie Modal -->
+    <div class="modal" id="add-movie-modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="admin-form">
+                <h2>Add New Movie</h2>
+                <form id="add-movie-form" class="movie-form">
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="movie-title">Title</label>
+                            <input type="text" id="movie-title" required>
+                        </div>
+                        <div class="input-group">
+                            <label for="movie-year">Release Year</label>
+                            <input type="number" id="movie-year" min="1900" max="2099" required>
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="movie-poster">Poster URL</label>
+                        <input type="url" id="movie-poster">
+                    </div>
+                    <div class="form-row">
+                        <div class="input-group">
+                            <label for="movie-duration">Duration (min)</label>
+                            <input type="number" id="movie-duration" min="1">
+                        </div>
+                        <div class="input-group">
+                            <label for="movie-rating">Rating</label>
+                            <input type="number" id="movie-rating" min="0" max="10" step="0.1">
+                        </div>
+                    </div>
+                    <div class="input-group">
+                        <label for="movie-genres">Genres</label>
+                        <select id="movie-genres" multiple>
+                            <option value="action">Action</option>
+                            <option value="adventure">Adventure</option>
+                            <option value="comedy">Comedy</option>
+                            <option value="drama">Drama</option>
+                            <option value="horror">Horror</option>
+                            <option value="sci-fi">Sci-Fi</option>
+                            <option value="thriller">Thriller</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="movie-director">Director</label>
+                        <input type="text" id="movie-director">
+                    </div>
+                    <div class="input-group">
+                        <label for="movie-actors">Actors (comma separated)</label>
+                        <input type="text" id="movie-actors">
+                    </div>
+                    <div class="input-group">
+                        <label for="movie-description">Description</label>
+                        <textarea id="movie-description" rows="4" required></textarea>
+                    </div>
+                    <button type="submit">Add Movie</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-column">
+                <h3>MovieDB</h3>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="#">Press</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Browse</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Movies</a></li>
+                    <li><a href="#">TV Shows</a></li>
+                    <li><a href="#">Actors</a></li>
+                    <li><a href="#">Directors</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Help</h3>
+                <ul class="footer-links">
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Terms of Service</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Support</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Connect</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom container">
+            <p>&copy; 2025 MovieDB. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
