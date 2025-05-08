@@ -1,0 +1,159 @@
+// Wait for DOM to fully load before executing JavaScript
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("Script loaded successfully!");
+
+    // DOM Elements
+    const searchForm = document.querySelector('form.search-form');
+    const searchInput = document.querySelector('form.search-form input[type="text"]');
+    const moviesGrid = document.querySelector('.movies-grid');
+    const toggleAdvancedBtn = document.querySelector('.toggle-advanced');
+    const advancedSearch = document.querySelector('.advanced-search');
+
+    // Sample Movie Data (replace with your complete data)
+    const movies = [
+        {
+            id: 1,
+            title: "Inception",
+            year: 2010,
+            rating: 8.8,
+            poster: "imgs/inception.jpg",
+            banner: "imgs/inception.jpg",
+            duration: "148 min",
+            genres: ["Action", "Adventure", "Sci-Fi"],
+            director: "Christopher Nolan",
+            description: "A thief who steals corporate secrets through dream-sharing technology.",
+            cast: [
+                { name: "Leonardo DiCaprio", role: "Cobb",photo: "imgs/Leonardo-DiCaprio.webp" },
+                { name: "Joseph Gordon-Levitt", role: "Arthur" }
+            ]
+        },
+        {
+            id: 2,
+            title: "The Shawshank Redemption",
+            year: 1994,
+            rating: 9.3,
+            poster: "imgs/shawshank-redemption.webp",
+            banner: "imgs/shawshank-redemption.webp",
+            duration: "142 min",
+            genres: ["Drama"],
+            director: "Frank Darabont",
+            description: "Two imprisoned men bond over several years.",
+            cast: [
+                { name: "Tim Robbins", role: "Andy Dufresne" },
+                { name: "Morgan Freeman", role: "Ellis Boyd 'Red' Redding" }
+            ]
+        },
+        // Add your other movies here in the same format
+        {
+            id: 3,
+            title: "The Dark Knight",
+            year: 2008,
+            rating: 9.0,
+            poster: "imgs/dark-knight.jpeg", // Hyphen, no space
+            banner: "imgs/dark-knight.jpeg", // Separate banner image
+            duration: "152 min",
+            genres: ["Action", "Crime", "Drama"],
+            director: "Christopher Nolan",
+            description: "When the Joker wreaks havoc...",
+            cast: [
+              { 
+                name: "Christian Bale", 
+                role: "Bruce Wayne", 
+                photo: "imgs/actors/bale.jpg" 
+              }
+            ]
+          }
+        
+    ];
+
+    // Initialize the page with all movies
+    displayMovies(movies);
+
+    // Search Form Submission
+    searchForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        console.log("Search form submitted!");
+        
+        const searchTerm = searchInput.value.toLowerCase().trim();
+        
+        if (!searchTerm) {
+            displayMovies(movies);
+            return;
+        }
+
+        const filteredMovies = movies.filter(function(movie) {
+            return movie.title.toLowerCase().includes(searchTerm);
+        });
+
+        displayMovies(filteredMovies);
+    });
+
+    // Toggle Advanced Search
+    toggleAdvancedBtn.addEventListener('click', function() {
+        advancedSearch.classList.toggle('active');
+    });
+
+    // Display Movies Function
+    function displayMovies(moviesToDisplay) {
+        console.log("Displaying movies:", moviesToDisplay);
+        
+        moviesGrid.innerHTML = '';
+        
+        if (moviesToDisplay.length === 0) {
+            moviesGrid.innerHTML = '<p class="no-results">No movies found. Try a different search.</p>';
+            return;
+        }
+
+        moviesToDisplay.forEach(function(movie) {
+            const movieCard = document.createElement('div');
+            movieCard.className = 'movie-card';
+            movieCard.innerHTML = `
+                <img src="${movie.poster}" alt="${movie.title}" class="movie-poster">
+                <div class="movie-info">
+                    <h3 class="movie-title">${movie.title}</h3>
+                    <div class="movie-meta">
+                        <span>${movie.year}</span>
+                        <span class="movie-rating">${movie.rating}</span>
+                    </div>
+                </div>
+            `;
+            movieCard.addEventListener('click', function() {
+                openMovieDetails(movie.id);
+            });
+            moviesGrid.appendChild(movieCard);
+        });
+    }
+
+    // Open Movie Details Modal
+    function openMovieDetails(movieId) {
+        const movie = movies.find(function(m) { return m.id === movieId; });
+        if (!movie) return;
+
+        const modal = document.getElementById('movie-details-modal');
+        const banner = modal.querySelector('.movie-banner');
+        const title = modal.querySelector('.movie-banner-title');
+        
+        // Set movie details
+        banner.style.backgroundImage = `url(${movie.banner})`;
+        title.textContent = movie.title;
+        
+        // Show the modal
+        modal.classList.add('active');
+    }
+
+    // Close Modal Functionality
+    document.querySelectorAll('.close-modal').forEach(function(button) {
+        button.addEventListener('click', function() {
+            this.closest('.modal').classList.remove('active');
+        });
+    });
+
+    // Login/Signup Modal Toggles
+    document.getElementById('login-btn').addEventListener('click', function() {
+        document.getElementById('login-modal').classList.add('active');
+    });
+
+    document.getElementById('signup-btn').addEventListener('click', function() {
+        document.getElementById('signup-modal').classList.add('active');
+    });
+});
