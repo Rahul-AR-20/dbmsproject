@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const movies = [
         {
             id: 1,
+            key: "inception",
             title: "Inception",
             year: 2010,
             rating: 8.8,
@@ -29,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 2,
+            key: "shawshank",
             title: "The Shawshank Redemption",
             year: 1994,
             rating: 9.3,
@@ -46,10 +48,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add your other movies here in the same format
         {
             id: 3,
+            key: "darkKnight",
             title: "The Dark Knight",
             year: 2008,
             rating: 9.0,
             poster: "imgs/dark-knight.jpeg", // Hyphen, no space
+            // altPoster: "imgs/dark-knight-alt.jpeg",
             banner: "imgs/dark-knight.jpeg", // Separate banner image
             duration: "152 min",
             genres: ["Action", "Crime", "Drama"],
@@ -65,6 +69,51 @@ document.addEventListener('DOMContentLoaded', function() {
           }
         
     ];
+// Initialize the page with all movies
+displayMovies(movies);
+const movieCasts = {
+    inception: [
+      { name: "Leonardo DiCaprio", role: "Cobb", img: "imgs/Leonardo-DiCaprio.webp" },
+      { name: "Joseph Gordon-Levitt", role: "Arthur", img: "imgs/Joseph-Gordon-Levitt.webp.png" },
+      { name: "Elliot Page", role: "Ariadne", img: "imgs/Ellen-page.png" },
+      { name: "Tom Hardy", role: "Eames", img: "imgs/Tom-Hardy.png" },
+      { name: "Ken Watanabe", role: "Saito", img: "imgs/Ken-Watanabe.png" }
+    ],
+    shawshank: [
+        { name: "Tim Robbins", role: "Andy Dufresne", img: "imgs/Tim-Robbins.png" },
+        { name: "Morgan Freeman", role: "Ellis 'Red' Redding", img: "imgs/Morgan-Freeman.png" },
+        { name: "Bob Gunton", role: "Warden Norton", img: "imgs/Bob-Gunton.png" },
+        { name: "William Sadler", role: "Heywood", img: "imgs/William-Sadler.png" },
+        { name: "Clancy Brown", role: "Captain Hadley", img: "imgs/Clancy-Brown.png" }
+      ],
+    darkKnight: [
+        { name: "Christian Bale", role: "Bruce Wayne / Batman", img: "imgs/Christian-Bale.png" },
+        { name: "Heath Ledger", role: "Joker", img: "imgs/Heath-Ledger.png" },
+        { name: "Aaron Eckhart", role: "Harvey Dent", img: "imgs/Aaron-Eckhart.png" },
+        { name: "Michael Caine", role: "Alfred Pennyworth", img: "imgs/Michael-Caine.png" },
+        { name: "Gary Oldman", role: "James Gordon", img: "imgs/Gary-Oldman.png" },
+        { name: "Maggie Gyllenhaal", role: "Rachel Dawes", img: "imgs/Maggie-Gyllenhaal.png" }
+      ]
+    
+
+    // Add more movies here
+  };
+  
+  function renderCast(movieKey) {
+    const castList = document.getElementById("cast-list");
+    castList.innerHTML = ""; // Clear previous cast
+  
+    movieCasts[movieKey].forEach(actor => {
+      castList.innerHTML += `
+        <div class="cast-item">
+          <img src="${actor.img}" alt="${actor.name}" class="cast-photo">
+          <div class="cast-name">${actor.name}</div>
+          <div class="cast-role">${actor.role}</div>
+        </div>
+      `;
+    });
+  }
+  
 
     // Initialize the page with all movies
     displayMovies(movies);
@@ -132,10 +181,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const modal = document.getElementById('movie-details-modal');
         const banner = modal.querySelector('.movie-banner');
         const title = modal.querySelector('.movie-banner-title');
-        
+        const poster = modal.querySelector('.movie-poster-large');
         // Set movie details
         banner.style.backgroundImage = `url(${movie.banner})`;
         title.textContent = movie.title;
+        poster.src = movie.poster;
+        renderCast(movie.key);
         
         // Show the modal
         modal.classList.add('active');

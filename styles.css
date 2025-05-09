@@ -378,3 +378,15 @@ nav ul li a:hover {
     padding: 20px;
     border-radius:8px;
 }
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    text-align: center;
+}
+
+.footer-bottom{
+    text-align: center;
+}
