@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const movies = [
         {
             id: 1,
+            key: "inception",
             title: "Inception",
             year: 2010,
             rating: 8.8,
@@ -29,6 +30,7 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             id: 2,
+            key: "shawshank",
             title: "The Shawshank Redemption",
             year: 1994,
             rating: 9.3,
@@ -46,10 +48,12 @@ document.addEventListener('DOMContentLoaded', function() {
         // Add your other movies here in the same format
         {
             id: 3,
+            key: "darkKnight",
             title: "The Dark Knight",
             year: 2008,
             rating: 9.0,
             poster: "imgs/dark-knight.jpeg", // Hyphen, no space
+            // altPoster: "imgs/dark-knight-alt.jpeg",
             banner: "imgs/dark-knight.jpeg", // Separate banner image
             duration: "152 min",
             genres: ["Action", "Crime", "Drama"],
@@ -111,9 +115,9 @@ const movieCasts = {
   }
   
   // Example: load cast for 'inception'
-  renderCast("inception");
-  renderCast("shawshank");
-  renderCast("darkKnight");
+//   renderCast("inception");
+//   renderCast("shawshank");
+//   renderCast("darkKnight");
 
 
     // Initialize the page with all movies
@@ -186,6 +190,8 @@ const movieCasts = {
         // Set movie details
         banner.style.backgroundImage = `url(${movie.banner})`;
         title.textContent = movie.title;
+        // poster.src = movie.poster;
+        renderCast(movie.key);
         
         // Show the modal
         modal.classList.add('active');
