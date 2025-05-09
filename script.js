@@ -114,11 +114,6 @@ const movieCasts = {
     });
   }
   
-  // Example: load cast for 'inception'
-//   renderCast("inception");
-//   renderCast("shawshank");
-//   renderCast("darkKnight");
-
 
     // Initialize the page with all movies
     displayMovies(movies);
@@ -186,11 +181,11 @@ const movieCasts = {
         const modal = document.getElementById('movie-details-modal');
         const banner = modal.querySelector('.movie-banner');
         const title = modal.querySelector('.movie-banner-title');
-        
+        const poster = modal.querySelector('.movie-poster-large');
         // Set movie details
         banner.style.backgroundImage = `url(${movie.banner})`;
         title.textContent = movie.title;
-        // poster.src = movie.poster;
+        poster.src = movie.poster;
         renderCast(movie.key);
         
         // Show the modal
